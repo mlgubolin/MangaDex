@@ -3,10 +3,10 @@ defmodule MangaDex.MangaDex.SerieAuthors do
   import Ecto.Changeset
 
   schema "serie_authors" do
-    belongs_to :serie, Mangadex.MangaDex.Serie 
-    belongs_to :author, Mangadex.MangaDex.Author
-    belongs_to :role, Mangadex.MangaDex.Role
-    
+    belongs_to :serie, MangaDex.MangaDex.Serie
+    belongs_to :author, MangaDex.MangaDex.Author
+    belongs_to :role, MangaDex.MangaDex.Role
+
     timestamps(type: :utc_datetime)
   end
 
@@ -17,11 +17,3 @@ defmodule MangaDex.MangaDex.SerieAuthors do
     |> validate_required([])
   end
 end
-
-
-
-# Serie
-#       \
-#         SerieAuthors - Role
-#       /
-# Author
