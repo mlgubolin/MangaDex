@@ -3,7 +3,7 @@ defmodule MangaDex.MangaDex.User do
   import Ecto.Changeset
 
   schema "users" do
-    many_to_many :shelves, Mangadex.MangaDex.Shelf, join_through: "user_shelf"
+    many_to_many :shelves, MangaDex.MangaDex.Shelf, join_through: "user_shelf"
 
     timestamps(type: :utc_datetime)
   end
