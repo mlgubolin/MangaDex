@@ -4,8 +4,8 @@ defmodule MangaDex.Repo.Migrations.CreateVolumes do
   def change do
     create table(:volumes) do
       add :number, :integer
-      add :cover_image_uri, :binary
-      add :serie_id, references(:series, on_delete: :nothing)
+      add :cover_image_uri, :string
+      add :serie_id, references(:series), null: false
 
       timestamps(type: :utc_datetime)
     end

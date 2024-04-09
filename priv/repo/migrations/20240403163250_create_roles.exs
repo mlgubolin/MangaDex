@@ -3,7 +3,7 @@ defmodule MangaDex.Repo.Migrations.CreateRoles do
 
   def change do
     create table(:roles) do
-      add :role, :string
+      add :role, :string, null: false
 
       timestamps(type: :utc_datetime)
     end

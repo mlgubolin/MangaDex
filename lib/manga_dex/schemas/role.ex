@@ -1,4 +1,4 @@
-defmodule MangaDex.MangaDex.Role do
+defmodule MangaDex.Schemas.Role do
   use Ecto.Schema
   import Ecto.Changeset
 

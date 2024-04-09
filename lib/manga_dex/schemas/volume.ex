@@ -1,11 +1,11 @@
-defmodule MangaDex.MangaDex.Volume do
+defmodule MangaDex.Schemas.Volume do
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "volumes" do
     field :number, :integer
-    field :cover_image_uri, :binary
-    many_to_many :serie, MangaDex.MangaDex.Serie, join_through: "shelf_volumes"
+    field :cover_image_uri, :string
+    many_to_many :serie, MangaDex.Schemas.Serie, join_through: "shelf_volumes"
 
     timestamps(type: :utc_datetime)
   end
