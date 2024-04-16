@@ -3,7 +3,7 @@ defmodule MangaDex.Repo.Migrations.CreateShelfVolumes do
 
   def change do
     create table(:shelf_volumes, primary_key: false) do
-      add :shelf_id, references(:shelves), primary_key: true
+      add :shelves_id, references(:shelves), primary_key: true
       add :volume_id, references(:volumes), primary_key: true
 
       timestamps(type: :utc_datetime)
@@ -12,8 +12,8 @@ defmodule MangaDex.Repo.Migrations.CreateShelfVolumes do
 end
 
 
-create table(:user_volume_status, primary_key: false) do
-  add :user_id, references(:users), primary_key: true
-  add :volume_id, references(:volumes), primary_key: true
-  add :status, :string, null: false
-end
+# create_table(:user_volume_status, primary_key: false) do
+#   add :user_id, references(:users), primary_key: true
+#   add :volume_id, references(:volumes), primary_key: true
+#   add :status, :string, null: false
+# end
