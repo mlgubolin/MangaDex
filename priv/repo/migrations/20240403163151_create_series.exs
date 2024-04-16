@@ -3,7 +3,7 @@ defmodule MangaDex.Repo.Migrations.CreateSeries do
 
   def change do
     create table(:series) do
-      add :name, :string
+      add :name, :string, null: false
 
       timestamps(type: :utc_datetime)
     end

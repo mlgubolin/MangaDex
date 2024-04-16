@@ -1,4 +1,4 @@
-defmodule MangaDex.MangaDex.Role do
+defmodule MangaDex.Schemas.Role do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -6,10 +6,9 @@ defmodule MangaDex.MangaDex.Role do
     field :name, :string
   end
 
-
   def changeset(role, attrs) do
     role
     |> cast(attrs, [:name])
     |> validate_required([:name])
-  end 
+  end
 end

@@ -1,12 +1,12 @@
-defmodule MangaDex.MangaDex.Serie do
+defmodule MangaDex.Schemas.Serie do
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "series" do
     field :name, :string
 
-    many_to_many :authors, MangaDex.MangaDex.Author, join_through: "serie_authors"
-    has_many :roles, MangaDex.MangaDex.SerieAuthors, foreign_key: :serie_id
+    many_to_many :authors, MangaDex.Schemas.Author, join_through: "serie_authors"
+    has_many :roles, MangaDex.Schemas.SerieAuthors, foreign_key: :serie_id
 
     timestamps(type: :utc_datetime)
   end
