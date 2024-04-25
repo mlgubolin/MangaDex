@@ -11,7 +11,6 @@ defmodule MangaDex.Repo.Migrations.CreateShelfVolumes do
   end
 end
 
-
 # create_table(:user_volume_status, primary_key: false) do
 #   add :user_id, references(:users), primary_key: true
 #   add :volume_id, references(:volumes), primary_key: true

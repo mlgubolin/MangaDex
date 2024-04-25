@@ -6,7 +6,7 @@ defmodule MangaDexWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, html: {MangaDexWeb.Layouts, :root}
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -18,6 +18,10 @@ defmodule MangaDexWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    scope "/", Publications do
+      resources "/authors", AuthorController, only: [:index,:show, :create, :update, :delete]
+    end
   end
 
   # Other scopes may use custom stacks.
