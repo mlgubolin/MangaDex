@@ -31,4 +31,32 @@ defmodule MangaDex.PublicationsFixtures do
 
     author
   end
+
+  @doc """
+  Generate a serie_authors.
+  """
+  def serie_authors_fixture(attrs \\ %{}) do
+    {:ok, serie_authors} =
+      attrs
+      |> Enum.into(%{
+
+      })
+      |> MangaDex.Publications.create_serie_authors()
+
+    serie_authors
+  end
+
+  @doc """
+  Generate a volume.
+  """
+  def volume_fixture(attrs \\ %{}) do
+    {:ok, volume} =
+      attrs
+      |> Enum.into(%{
+        number: 42
+      })
+      |> MangaDex.Publications.create_volume()
+
+    volume
+  end
 end

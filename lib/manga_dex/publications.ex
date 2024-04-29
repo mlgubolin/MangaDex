@@ -197,4 +197,196 @@ defmodule MangaDex.Publications do
   def change_author(%Author{} = author, attrs \\ %{}) do
     Author.changeset(author, attrs)
   end
+
+  alias MangaDex.Publications.SerieAuthors
+
+  @doc """
+  Returns the list of serie_authors.
+
+  ## Examples
+
+      iex> list_serie_authors()
+      [%SerieAuthors{}, ...]
+
+  """
+  def list_serie_authors do
+    Repo.all(SerieAuthors)
+  end
+
+  @doc """
+  Gets a single serie_authors.
+
+  Raises `Ecto.NoResultsError` if the Serie authors does not exist.
+
+  ## Examples
+
+      iex> get_serie_authors!(123)
+      %SerieAuthors{}
+
+      iex> get_serie_authors!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_serie_authors!(id), do: Repo.get!(SerieAuthors, id)
+
+  @doc """
+  Creates a serie_authors.
+
+  ## Examples
+
+      iex> create_serie_authors(%{field: value})
+      {:ok, %SerieAuthors{}}
+
+      iex> create_serie_authors(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_serie_authors(attrs \\ %{}) do
+    %SerieAuthors{}
+    |> SerieAuthors.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a serie_authors.
+
+  ## Examples
+
+      iex> update_serie_authors(serie_authors, %{field: new_value})
+      {:ok, %SerieAuthors{}}
+
+      iex> update_serie_authors(serie_authors, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_serie_authors(%SerieAuthors{} = serie_authors, attrs) do
+    serie_authors
+    |> SerieAuthors.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a serie_authors.
+
+  ## Examples
+
+      iex> delete_serie_authors(serie_authors)
+      {:ok, %SerieAuthors{}}
+
+      iex> delete_serie_authors(serie_authors)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_serie_authors(%SerieAuthors{} = serie_authors) do
+    Repo.delete(serie_authors)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking serie_authors changes.
+
+  ## Examples
+
+      iex> change_serie_authors(serie_authors)
+      %Ecto.Changeset{data: %SerieAuthors{}}
+
+  """
+  def change_serie_authors(%SerieAuthors{} = serie_authors, attrs \\ %{}) do
+    SerieAuthors.changeset(serie_authors, attrs)
+  end
+
+  alias MangaDex.Publications.Volume
+
+  @doc """
+  Returns the list of volumes.
+
+  ## Examples
+
+      iex> list_volumes()
+      [%Volume{}, ...]
+
+  """
+  def list_volumes do
+    Repo.all(Volume)
+  end
+
+  @doc """
+  Gets a single volume.
+
+  Raises `Ecto.NoResultsError` if the Volume does not exist.
+
+  ## Examples
+
+      iex> get_volume!(123)
+      %Volume{}
+
+      iex> get_volume!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_volume!(id), do: Repo.get!(Volume, id)
+
+  @doc """
+  Creates a volume.
+
+  ## Examples
+
+      iex> create_volume(%{field: value})
+      {:ok, %Volume{}}
+
+      iex> create_volume(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_volume(attrs \\ %{}) do
+    %Volume{}
+    |> Volume.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a volume.
+
+  ## Examples
+
+      iex> update_volume(volume, %{field: new_value})
+      {:ok, %Volume{}}
+
+      iex> update_volume(volume, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_volume(%Volume{} = volume, attrs) do
+    volume
+    |> Volume.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a volume.
+
+  ## Examples
+
+      iex> delete_volume(volume)
+      {:ok, %Volume{}}
+
+      iex> delete_volume(volume)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_volume(%Volume{} = volume) do
+    Repo.delete(volume)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking volume changes.
+
+  ## Examples
+
+      iex> change_volume(volume)
+      %Ecto.Changeset{data: %Volume{}}
+
+  """
+  def change_volume(%Volume{} = volume, attrs \\ %{}) do
+    Volume.changeset(volume, attrs)
+  end
 end
