@@ -3,7 +3,7 @@ defmodule MangaDex.Repo.Migrations.CreateShelfVolumes do
 
   def change do
     create table(:shelf_volumes) do
-      add :amount, :integer
+      # add :amount, :integer
       add :shelf_id, references(:shelves, on_delete: :nothing)
       add :volume_id, references(:volumes, on_delete: :nothing)
 

@@ -3,10 +3,9 @@ defmodule MangaDex.Publications.SerieAuthors do
   import Ecto.Changeset
 
   schema "serie_authors" do
-
-    field :serie_id, :id
-    field :author_id, :id
-    field :role_id, :id
+    belongs_to :serie, MangaDex.Schemas.Serie
+    belongs_to :author, MangaDex.Schemas.Author
+    belongs_to :role, MangaDex.Schemas.Role
 
     timestamps(type: :utc_datetime)
   end

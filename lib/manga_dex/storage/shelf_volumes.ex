@@ -1,11 +1,12 @@
 defmodule MangaDex.Storage.ShelfVolumes do
+  alias MangaDex.Storage.Shelf
+  alias MangaDex.Publications.Volume
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "shelf_volumes" do
-    field :amount, :integer
-    field :shelf_id, :id
-    field :volume_id, :id
+    belongs_to :shelves, Shelf
+    belongs_to :volumes, Volume
 
     timestamps(type: :utc_datetime)
   end
