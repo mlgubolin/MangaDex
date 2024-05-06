@@ -12,5 +12,35 @@ defmodule MangaDex.Repo.Migrations.CreateShelfVolumes do
 
     create index(:shelf_volumes, [:shelf_id])
     create index(:shelf_volumes, [:volume_id])
+
+    ##Searchables:
+
+    execute """
+    ALTER TABLE authors
+      ADD COLUMN searchable tsvector
+      GENERATED ALWAYS AS (
+        setweight(
+          to_tsvector('english', coalesce(name, '')), 'A'
+        )
+      ) STORED;
+    """
+
+    execute """
+      CREATE INDEX authors_searchable_index ON authors USING gin(searchable);
+    """
+
+    execute """
+    ALTER TABLE series
+      ADD COLUMN searchable tsvector
+      GENERATED ALWAYS AS (
+        setweight(
+          to_tsvector('english', coalesce(name, '')), 'A'
+        )
+      ) STORED;
+    """
+
+    execute """
+    CREATE INDEX series_searchable_index ON series USING gin(searchable);
+  """
   end
 end

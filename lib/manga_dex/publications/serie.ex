@@ -10,8 +10,6 @@ defmodule MangaDex.Publications.Serie do
     many_to_many :authors, Author, join_through: "serie_authors"
     has_many :roles, SerieAuthors, foreign_key: :serie_id
 
-
-
     timestamps(type: :utc_datetime)
   end
 
