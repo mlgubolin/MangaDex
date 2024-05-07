@@ -1,6 +1,5 @@
 defmodule MangaDexWeb.AuthorController do
   use MangaDexWeb, :controller
-
   alias MangaDex.Publications
   alias MangaDex.Publications.Author
 
@@ -34,12 +33,11 @@ defmodule MangaDexWeb.AuthorController do
   def edit(conn, %{"id" => id}) do
     author = Publications.get_author!(id)
     changeset = Publications.change_author(author)
-    render(conn, :edit, author: author, changeset: changeset)
+    render(conn, :edit, author: author, changeset: changeset)#, available_series: series)
   end
 
   def update(conn, %{"id" => id, "author" => author_params}) do
     author = Publications.get_author!(id)
-
     case Publications.update_author(author, author_params) do
       {:ok, author} ->
         conn

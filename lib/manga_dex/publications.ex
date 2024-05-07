@@ -3,9 +3,10 @@ defmodule MangaDex.Publications do
   The Publications context.
   """
 
-  import Ecto.Query, warn: false
-  alias MangaDex.Repo
+import Ecto.Query, warn: false
+alias MangaDex.Repo
 
+  alias MangaDex.Publications.Author
   alias MangaDex.Publications.Serie
 
   @doc """
@@ -388,5 +389,46 @@ defmodule MangaDex.Publications do
   """
   def change_volume(%Volume{} = volume, attrs \\ %{}) do
     Volume.changeset(volume, attrs)
+  end
+
+  #Search
+  def search_authors(search_term) do
+    query =
+      from(b in Author,
+        where:
+          fragment(
+            "searchable @@ websearch_to_tsquery(?)",
+            ^search_term
+          ),
+        order_by: {
+          :desc,
+          fragment(
+            "ts_rank_cd(searchable, websearch_to_tsquery(?), 4)",
+            ^search_term
+          )
+        }
+      )
+
+    Repo.all(query)
+  end
+
+  def search_series(search_term) do
+    query =
+      from(b in Serie,
+        where:
+          fragment(
+            "searchable @@ websearch_to_tsquery(?)",
+            ^search_term
+          ),
+        order_by: {
+          :desc,
+          fragment(
+            "ts_rank_cd(searchable, websearch_to_tsquery(?), 4)",
+            ^search_term
+          )
+        }
+      )
+
+    Repo.all(query)
   end
 end
