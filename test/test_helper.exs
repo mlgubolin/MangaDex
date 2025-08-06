@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(MangaDex.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Mangadex.Repo, :manual)
