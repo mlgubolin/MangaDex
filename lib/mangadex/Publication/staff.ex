@@ -10,15 +10,6 @@ defmodule Mangadex.Publication.Staff do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @type t :: %__MODULE__{
-    id: integer() | nil,
-    individual_id: integer(),
-    series_id: integer(),
-    volume_id: integer() | nil,
-    role: :author | :writer | :illustrator,
-    notes: String.t() | nil,
-  }
-
   schema "publication_staff" do
     field :role, Ecto.Enum, values: [:author, :writer, :illustrator]
     field :notes, :string
@@ -44,7 +35,6 @@ defmodule Mangadex.Publication.Staff do
   @doc """
   Changeset for creating or updating publication staff.
   """
-  @spec changeset(t(), map()) :: Ecto.Changeset.t()
   def changeset(publication_staff, attrs) do
     publication_staff
     |> cast(attrs, [:role, :notes])

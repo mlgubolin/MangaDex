@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :mangadex, Mangadex.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "aut",
+  password: "aut2021",
   hostname: "localhost",
   database: "mangadex_dev",
   stacktrace: true,

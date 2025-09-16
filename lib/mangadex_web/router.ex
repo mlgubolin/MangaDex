@@ -24,6 +24,7 @@ defmodule MangadexWeb.Router do
   # scope "/api", MangadexWeb do
   #   pipe_through :api
   # end
+  alias MangadexWeb.PublicationController
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:mangadex, :dev_routes) do
@@ -33,7 +34,11 @@ defmodule MangadexWeb.Router do
     # you can use Plug.BasicAuth to set up some basic authentication
     # as long as you are also using SSL (which you should anyway).
     import Phoenix.LiveDashboard.Router
+    scope "/" do
+      pipe_through :browser
 
+      get "/publication/", PublicationController, :home
+    end
     scope "/dev" do
       pipe_through :browser
 

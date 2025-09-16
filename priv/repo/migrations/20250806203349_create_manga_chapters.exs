@@ -2,16 +2,11 @@ defmodule Livescreaming.Repo.Migrations.CreateMangaVolumes do
   use Ecto.Migration
 
   def change do
-    execute """
-    CREATE TYPE release_format AS ENUM ('webcomic', 'physical');
-    CREATE TYPE release_status AS ENUM ('ongoing', 'completed', 'cancelled', 'hiatus');
-    CREATE TYPE publication_roles AS ENUM ('author', 'writer', 'illustrator');
-    """
 
     create table(:publication_series) do
       add :title, :string, null: false
-      add :release_format, :release_format, null: false
-      add :status, :release_status, null: false
+      add :release_format, :string, null: false
+      add :status, :string, null: false
     end
 
     create unique_index(:publication_series, [:title])
@@ -22,21 +17,10 @@ defmodule Livescreaming.Repo.Migrations.CreateMangaVolumes do
       add :name, :string, null: false
     end
 
-    create table(:publication_staff) do
-      add :individual_id, references(:individuals), null: false
-      add :publication_id, references(:publication_series), null: false
-      add :volume_id, references(:publication_volumes)
-      add :role, :publication_roles, null: false
-      add :notes, :string
-    end
-
-    create index(:publication_series_staff, [:individual_id])
-    create index(:publication_series_staff, [:publication_id])
-
     create table(:publication_volumes) do
       add :title, :string, null: false
-      add :series_id, references(:manga_series), null: false
-      add :publisher_id, references(:publishers)
+      add :series_id, references(:publication_series), null: false
+      # add :publisher_id, references(:publishers)
       add :pages, :integer
       add :release_date, :date
       add :isbn, :string
@@ -44,7 +28,19 @@ defmodule Livescreaming.Repo.Migrations.CreateMangaVolumes do
       timestamps()
     end
 
-    create index(:manga_volumes, [:series_id, :release_date])
-    create index(:manga_volumes, [:publisher_id])
+
+    create table(:publication_staff) do
+      add :individual_id, references(:individuals), null: false
+      add :publication_id, references(:publication_series), null: false
+      add :volume_id, references(:publication_volumes)
+      add :role, :string, null: false
+      add :notes, :string
+    end
+
+    create index(:publication_staff, [:individual_id])
+    create index(:publication_staff, [:publication_id])
+
+
+    create index(:publication_volumes, [:series_id, :release_date])
   end
 end
